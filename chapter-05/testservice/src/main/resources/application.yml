@@ -1,0 +1,14 @@
+server:
+  port: 8602
+
+spring:
+  application:
+    name: testservice
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/
+
+app:
+  ip: localhost
