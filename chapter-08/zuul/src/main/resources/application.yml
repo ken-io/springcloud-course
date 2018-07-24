@@ -1,0 +1,22 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/
+zuul:
+  routes:
+    ts:
+      path: /ts/**
+      serviceId: testservice
+    ken-io:
+      path: /ken/*
+      url: https://ken.io/
+  ignored-patterns: /**/hs,/**/health
+
+
