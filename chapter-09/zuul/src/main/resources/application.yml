@@ -1,0 +1,41 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: zuul
+  redis:
+    host: 192.168.88.11
+    port: 6379
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8800/eureka/
+zuul:
+  routes:
+    ts:
+      path: /ts/**
+      serviceId: testservice
+    ken-io:
+      path: /ken/*
+      url: https://ken.io/
+  ignored-patterns: /**/hs,/**/health
+  ratelimit:
+    enabled: true
+    repository: redis
+    default-policy:
+      limit: 1
+      quota: 1
+      refresh-interval: 3
+    policies:
+      testservice:
+        limit: 10
+        quota: 50
+        refresh-interval: 60
+        type: url
+
+
+
+
+
